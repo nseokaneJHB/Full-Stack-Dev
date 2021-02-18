@@ -1,4 +1,4 @@
-# **BLOG PROJECT**
+# **BLOG PROJECT (In progress)**
 
 **The project is made using Angular and Python (Django Rest Framework)**
 
