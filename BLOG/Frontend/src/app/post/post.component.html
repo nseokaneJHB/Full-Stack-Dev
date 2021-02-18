@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row p-3">
+        <div class="col-sm-6">
+            <h3 class="text-center">Post</h3>
+            <div class="post">
+                <div class="card" style="background-color: inherit;">
+                    <div class="card-body">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid avatar rounded-circle" alt="">
+    
+                        <div class="content">
+                            <div class="meta">
+                                <h6><a href="#">{{user.username}}</a> says : </h6>
+                                <h6>{{post.date_created}} at {{post.time}}&nbsp;<i class="pull-right"></i></h6>
+                            </div>
+    
+                            <small class="card-text">{{post.post}}</small>
+    
+                            <div class="interact d-flex justify-content-end">
+                                <small><i class="fa fa-thumbs-up">&nbsp;{{likes.length}}</i></small>
+                                <small><i class="fa fa-comment">&nbsp;{{comments.length}}</i></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3 class="text-center">Comments</h3>
+            <div class="comments border-top border-bottom">
+                <div class="card" *ngFor="let comment of comments">
+                    <div class="card-body">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid avatar rounded-circle" alt="">
+    
+                        <div class="content">
+                            <div class="meta">
+                                <h6><a href="#">{{comment.author.username}}</a> says : </h6>
+                                <h6>{{comment.date_created}} at {{comment.time}}&nbsp;<i class="pull-right"></i>
+                                    <a href=""><small>reply</small></a>
+                                </h6>
+                            </div>
+    
+                            <small class="card-text">{{comment.comment}}</small>
+    
+                            <!-- <div class="interact d-flex justify-content-end">
+                                <small><i class="fa fa-thumbs-up">&nbsp;{{comment.likes.length}}</i></small>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form>
+                <textarea class="form-control" rows="3" placeholder="Add a comment..."></textarea>
+                <div class="d-flex mt-2">
+                    <button class="btn btn-sm btn-primary ml-auto">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+*{
+    box-sizing: border-box;
+    transition: 2s;
+    margin: 0;
+}
+
+body{
+    min-height: 100vh;
+}
+
+.card-wrapper{
+    align-items: center;
+    min-height: 68vh;
+    display: flex;
+    width: 100%;
+}
+.card{
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.664);
+    background-color: #d59696;
+}
+.input-group-text, input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid;
+}
+
+input, button, textarea:focus{
+    box-shadow: none;
+}
+
+textarea{
+    background-color: #d59696;
+    border: 1px solid;
+}
+
+.account-settings .user-profile {
+    padding-bottom: 1rem;
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+.account-settings .user-profile .user-avatar img {
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    height: 90px;
+    width: 90px;
+}
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+.account-settings .user-profile h6.user-email {
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin: 0;
+}
+.account-settings .about {
+    text-align: center;
+    margin: 1rem 0 0 0;
+    font-size: 0.8rem;
+}
+

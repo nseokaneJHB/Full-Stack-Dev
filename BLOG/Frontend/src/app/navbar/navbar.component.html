@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-md navbar-light">
+	<a class="navbar-brand" routerLink="">Home</a>
+	<button class="navbar-toggler btn-sm" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+		aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		Menu
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav text-uppercase ml-auto">
+			<a class="nav-item nav-link" routerLink="profile">Profile</a>
+			<a class="nav-item nav-link" routerLink="register">Sign up</a>
+			<a class="nav-item nav-link" routerLink="login">Sign in</a>
+			<a class="nav-item nav-link" routerLink="login" (click)="signOut()">Sign out</a>
+		</div>
+	</div>
+</nav>

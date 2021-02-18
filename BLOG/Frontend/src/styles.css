@@ -1,0 +1,68 @@
+:root {
+  --primary-bg: #d59696;
+  --primary-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.664);
+  --primary-padding: 1rem;
+  --mg-center: 0 auto;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: 2s;
+  transition: 2s;
+  margin: 0;
+}
+
+body {
+  background-color: #bdbdbd18;
+  min-height: 100vh;
+}
+
+nav {
+  background-color: var(--primary-bg);
+  -webkit-box-shadow: var(--primary-shadow);
+          box-shadow: var(--primary-shadow);
+}
+
+footer {
+  background-color: var(--primary-bg);
+  -webkit-box-shadow: var(--primary-shadow);
+          box-shadow: var(--primary-shadow);
+  padding: var(--primary-padding);
+  text-align: center;
+}
+
+.small-form-wrapper {
+  background-color: var(--primary-bg);
+  -webkit-box-shadow: var(--primary-shadow);
+          box-shadow: var(--primary-shadow);
+  padding: var(--primary-padding);
+  margin: var(--mg-center);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 65.1vh;
+  max-width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.small-form-wrapper .small-form {
+  margin: var(--mg-center);
+  width: 400px;
+  height: 100%;
+}
+
+.small-form-wrapper .small-form .input-group-text, .small-form-wrapper .small-form input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid;
+}
+
+input, button, textarea {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <form [formGroup]="postForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <textarea class="form-control" name="about" id="about_id" rows="3" formControlName="post"></textarea>
+        </div>
+    
+        <button type="submit" class="btn btn-sm btn-primary d-block mx-auto">Post</button>
+    </form>
+</div>
+
+<div class="posts-wrapper">
+    <div class="posts">
+        <div class="mb-4" *ngFor="let post of posts">
+            <div class="recipient">
+                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Profile Picture" />
+                <a routerLink="profile" class="recipient-name">{{post.author.username}}</a>
+            </div>
+            
+            <small class="post">
+                <ng-container *ngIf="post.post.length >= 50; else elseTemplate">
+                    {{post.post|slice: 0:50}}. <a routerLink="comments">Read more...</a>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    {{post.post}}
+                </ng-template>
+            </small>
+
+            <div class="post-footer">
+                <div class="post-action ml-auto">
+                    <i class="fa fa-thumbs-up" (click)="like(post)">&nbsp;{{post.likes.length}}</i>
+                    <a [routerLink]="['post', post.id]"><i class="fa fa-comment">&nbsp;{{post.comments.length}}</i></a>
+                </div>
+                -
+                <small class="post-time">11:50 AM</small>
+            </div>            
+        </div>
+        <hr>
+    </div>
+</div>
+
+    
