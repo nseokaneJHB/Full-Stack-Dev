@@ -12,6 +12,7 @@ todo_env/
 # IDE - VSCode
 TODO/vscode/settings.json
 .vscode/*
+./.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
