@@ -4,4 +4,4 @@
 
 It was made for practice because of my interest in ***Full Stack Development***
 
-*`Feel free to make pul requests either for practice or improving`*
+*`Feel free to make pull requests either for practice or improving`*
