@@ -1,0 +1,20 @@
+<div class="container">
+	<form class="form-row" #taskForm="ngForm" (ngSubmit)="submit(taskForm)">
+		<div class="col-9">
+		  <input type="text" name="task" class="form-control shadow-none" placeholder="Add Task" ngModel>
+		</div>
+		<div class="col">
+		  <button class="btn btn-block btn-primary shadow-none">Add</button>
+		</div>
+	</form>
+	
+	<div class="list-group">
+		<div class="list-group-item" *ngFor="let task of tasks">
+			<span (click)="complete(task)" [ngClass]="{'complete': task.complete == true}">{{task.task}}</span>
+			<span>
+                <button (click)="update(task)" type="button" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                <button (click)="remove(task)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>    
+			</span>
+		</div>
+	</div>
+</div>
