@@ -1,7 +1,5 @@
 # **FULL STACK PROJECTS**
 
-**The projects here are Backend and Frontend**
-
-You can use my ***WEB_DEV python*** 3.9 environment if you want
+**The projects here are For my own practice and application of knowledge. You can use them as you wish**
 
 ***`Nolan Seokane Ⓒ Copyright 2021`***
