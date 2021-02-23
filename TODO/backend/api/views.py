@@ -11,31 +11,25 @@ from .models import TODO
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        "Tasks": "tasks/",
-        "Add Task": "add/",
-        "Delete Task": "remove/:id",
-        "Update Task": "update/:id",
+        "Tasks": "/tasks/",
+        "Add Task": "/tasks/",
+        "Get, Update, Delete Task": "/task/:id",
     }
 
     return Response(api_urls)
 
 
 # View all the TODO Tasks
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def allTasks(request):
-    tasks = TODO.objects.all()
-    serializer = taskSerializer(tasks, many=True)
+    if request.method == 'GET':
+        tasks = TODO.objects.all()
+        serializer = taskSerializer(tasks, many=True)
 
-    return Response(serializer.data)
-
-
-# Add a new TODO Task
-@api_view(['POST'])
-def addTask(request):
-    serializer = taskSerializer(data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
+    elif request.method == 'POST':
+        serializer = taskSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
 
     return Response(serializer.data)
 
@@ -56,8 +50,5 @@ def getTask(request, pk):
     elif request.method == 'DELETE':
         task.delete()
         return Response("Deleted succesfully!")
-
-    else:
-        return Response("There's no such method!")
 
     return Response(serializer.data)

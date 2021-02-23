@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from '../todo.service'
+import { FormGroup, FormControl } from '@angular/forms';
+import { TodoService } from '../todo.service';
 
 @Component({
 	selector: 'app-todo',
@@ -8,74 +9,74 @@ import { TodoService } from '../todo.service'
 })
 export class TodoComponent implements OnInit {
 
-	// Define my inital variables
-	tasks: any = []
-	task: any = {task: '', complete: false}
-	error: string = 'Task cannot be empty and can only container at least 2 characters!'
-	success: string = ''
+	// Instantiate the TodoService
+	constructor(private _todo: TodoService) { }
 
-	// Instantiat my imported service
-	constructor(private todo: TodoService) { }
+	// Initialization
+	tasks: any = [];
+	task: any = {}
+	update_task: any = false
 
-	// Load tasks on load
-	load(){
-		console.log("\nGetting all tasks...");
-		this.todo.getTasks().subscribe(res => {
-			this.tasks = res
-			}
-		);
-	}
+	// Task Form
+	taskForm: any = new FormGroup({
+		task: new FormControl(''),
+		complete: new FormControl(false)
+	});
 
-	// On load
 	ngOnInit(): void {
 		this.load()
 	}
 
-	// Adding a task
-	submit(formTask: any){
-		if (formTask.form.value.task.trim().length < 1 && typeof formTask.form.value.task === "string") {
-			console.log("\nAdding", formTask.form.value.task, "to tasks...");
-			// this.task.task = formTask.form.value.task
-			// this.todo.addTask(this.task).subscribe(res => {
-			// 		res
-			// 	}
-			// )
-		}else{
-			console.log(this.error);
-			console.log(formTask.form);
-			console.log(typeof formTask.form.controls.task.value);
-			console.log(typeof formTask.form.value.task);
-			
-		}
-		this.load()
-	}
-
-	// Mark task as complete
-	complete(formTask: any){
-		console.log("\nGetting", formTask.task, "from tasks...");
-
-		console.log("Updating", formTask.task, "status...");
-		formTask.complete = !formTask.complete
-		this.todo.updateTask(formTask).subscribe(res => {
-			res
-		})	
-	}
-
-	update(formTask: any){
-		console.log("\nGetting", formTask.task, "from tasks...");
-
-		console.log("\nUpdating", formTask.task);
-		this.todo.updateTask(formTask)
-	}
-
-	// Removing a task
-	remove(formTask: any){
-		console.log("\nGetting", formTask.task, "from tasks...");
-
-		console.log("\nRemoving", formTask.task, "from tasks...");
-		this.todo.removeTask(formTask).subscribe(res => {
-			console.log(res);
+	// Loading all the tasks
+	load(){
+		this._todo.getTasks().subscribe((tasks: any) => {
+			this.tasks = tasks
+			this.taskForm.reset()
+			this.update_task = false
 		})
-		this.load()
+	}
+
+	// Adding a new task
+	submit(taskForm: any){
+		this.taskForm.controls.complete.setValue(false);
+		this._todo.addTask(taskForm.value).subscribe((res: any) => {
+			this.load()
+		})
+	}
+
+	// Mark task as complete or incomplete
+	complete(task: any){
+		this._todo.getTask(task).subscribe((task_get: any) => {
+			task_get.complete = !task_get.complete
+			this._todo.updateTask(task_get).subscribe((task_update: any) => {
+				this.load()
+			})
+		})
+	}
+
+	// Get task to update and asign the response to this.task
+	get_task(task: any){
+		this._todo.getTask(task).subscribe((res: any) => {
+			this.task = res
+			this.taskForm.controls.task.setValue(res.task);
+			this.update_task = true
+		})
+	}
+
+	// Update the task with data from the form
+	update(taskForm: any){
+		this.task.task = taskForm.value.task
+		this._todo.updateTask(this.task).subscribe((res: any) => {
+			this.load()
+		})
+	}
+
+	// Remove task by id
+	remove(task: any){
+		this._todo.getTask(task).subscribe((task_get: any) => {
+			this._todo.removeTask(task).subscribe((res: any) => {
+				this.load()
+			})
+		})
 	}
 }
