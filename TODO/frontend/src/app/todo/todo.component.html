@@ -13,6 +13,10 @@
 		</div>
 	</form>
 
+	<!-- <div class="alert alert-success mx-auto text-center p-1" style="max-width: 400px; height: 35px;" role="alert">
+		This is a success alert—check it out!
+	</div> -->
+
 	<div class="list-group mt-4">
 		<div class="list-group-item" *ngFor="let task of tasks">
 			<span (click)="complete(task)" [ngClass]="{'complete': task.complete == true}">{{task.task}}</span>
