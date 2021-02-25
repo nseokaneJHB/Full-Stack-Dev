@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../blog.service';
-import { HttpClient } from '@angular/common/http';
-import { Router,ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms'
 
 @Component({
 	selector: 'app-post',
@@ -10,10 +10,19 @@ import { Router,ActivatedRoute } from '@angular/router';
 })
 export class PostComponent implements OnInit {
 
+	// Initializations
 	user: any = {}
 	post: any = {}
 	likes: any = []
 	comments: any = []
+
+	commentForm = new FormGroup({
+		author: new FormControl(),
+		comment: new FormControl(''),
+		blog: new FormControl(),
+		likes: new FormControl([])
+	})
+
 
 	constructor(private blog: BlogService, private route: ActivatedRoute) { }
 
@@ -44,6 +53,32 @@ export class PostComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.load()
+	}
+
+	// Like post
+	like(post: any){
+		this.blog.getUser().subscribe((user: any) => {
+			if (post.likes.find((id: any) => id === user.id) === undefined){
+				post.likes.push(user.id);
+			}else{
+				post.likes.splice(post.likes.indexOf(user.id), 1);
+			};
+
+			this.blog.updatePost(post).subscribe((res: any) => {
+				this.load()
+			})
+		});
+	};
+
+	// Submit comment
+	submit(){
+		this.commentForm.value.author = localStorage.getItem('USER_ID');
+		this.commentForm.value.blog = this.route.snapshot.params.id
+		
+		this.blog.postComment(this.post, this.commentForm.value).subscribe((res: any) => {
+			this.commentForm.reset()
+			this.load()
+		})
 	}
 
 }

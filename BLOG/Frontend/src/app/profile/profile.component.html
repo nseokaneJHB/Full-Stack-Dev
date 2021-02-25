@@ -1,19 +1,21 @@
 <div class="card-wrapper mt-5 mb-4">
     <div class="row gutters">
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 mb-5">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="account-settings">
-                        <div class="user-profile">
-                            <div class="user-avatar">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+            <div>
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+                                </div>
+                                <h5 class="user-name text-dark">{{user.username}}</h5>
+                                <h6 class="user-email text-dark">{{user.email}}</h6>
                             </div>
-                            <h5 class="user-name text-dark">Yuki Hayashi</h5>
-                            <h6 class="user-email text-dark">yuki@Maxwell.com</h6>
-                        </div>
-                        <div class="about">
-                            <h5 class="mb-2 text-dark">About</h5>
-                            <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+                            <div *ngIf="profile.bio !== undefined " class="about">
+                                <h5 class="mb-2 text-dark">About</h5>
+                                <p>{{profile.bio}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -21,17 +23,35 @@
         </div>
         <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12 mb-5">
             <div class="card h-100">
-                <div class="card-body">
+                <form class="card-body" [formGroup]="profileForm" (ngSubmit)="submit()">
                     <div class="row gutters">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 border-bottom mb-3">
                             <h6 class="mb-3 text-dark">Personal Details</h6>
                         </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-center">
+                            <div style="width: 100%;">
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-user-secret"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" formControlName="username" name="username" id="username_id" placeholder="Enter username...">
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                                    <div class="input-group-text"><i class="far fa-user-circle"></i></div>
                                 </div>
-                                <input type="text" class="form-control" name="username" id="username_id" placeholder="Enter username...">
+                                <input type="text" class="form-control" formControlName="first_name" name="first_name" id="first_name_id" placeholder="Enter first name...">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                </div>
+                                <input type="text" class="form-control" formControlName="last_name" name="last_name" id="last_name_id" placeholder="Enter last name...">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -39,29 +59,32 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fa fa-envelope"></i></div>
                                 </div>
-                                <input type="email" class="form-control" name="email" id="email_id" placeholder="Enter email...">
+                                <input type="email" class="form-control" formControlName="email" name="email" id="email_id" placeholder="Enter email...">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                                    <div class="input-group-text"><i class="fa fa-phone"></i></div>
                                 </div>
-                                <input type="text" class="form-control" name="first_name" id="first_name_id" placeholder="Enter first name...">
+                                <input type="text" class="form-control" formControlName="phone" name="last_name" id="last_name_id" placeholder="Enter phone number...">
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="input-group mb-4">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="last_name" id="last_name_id" placeholder="Enter last name...">
+                                <div class="custom-file">
+                                    <label class="custom-file-label">Upload Avatar...</label>
+                                    <input type="file" class="custom-file-input" formControlName="avatar">
+                                </div>
                             </div>
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group mb-4">
                                 <label class="text-dark">About me</label>
-                                <textarea class="form-control" name="about" id="about_id" rows="4"></textarea>
+                                <textarea class="form-control" formControlName="bio" name="bio" id="bio_id" rows="4"></textarea>
                             </div>
                         </div>
                     </div>
@@ -72,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

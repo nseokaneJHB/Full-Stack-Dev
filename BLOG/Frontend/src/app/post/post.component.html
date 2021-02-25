@@ -8,15 +8,15 @@
                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid avatar rounded-circle" alt="">
     
                         <div class="content">
-                            <div class="meta">
-                                <h6><a href="#">{{user.username}}</a> says : </h6>
-                                <h6>{{post.date_created}} at {{post.time}}&nbsp;<i class="pull-right"></i></h6>
+                            <div class="meta d-flex justify-content-between">
+                                <h6><a href="#">{{user.username}}</a> says:&nbsp;</h6>
+                                <h6>&nbsp;<i class="pull-right">{{post.date_created}}</i></h6>
                             </div>
     
                             <small class="card-text">{{post.post}}</small>
     
                             <div class="interact d-flex justify-content-end">
-                                <small><i class="fa fa-thumbs-up">&nbsp;{{likes.length}}</i></small>
+                                <small><i (click)="like(post)" class="fa fa-thumbs-up">&nbsp;{{likes.length}}</i></small>
                                 <small><i class="fa fa-comment">&nbsp;{{comments.length}}</i></small>
                             </div>
                         </div>
@@ -32,24 +32,24 @@
                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid avatar rounded-circle" alt="">
     
                         <div class="content">
-                            <div class="meta">
-                                <h6><a href="#">{{comment.author.username}}</a> says : </h6>
-                                <h6>{{comment.date_created}} at {{comment.time}}&nbsp;<i class="pull-right"></i>
-                                    <a href=""><small>reply</small></a>
+                            <div class="meta d-flex justify-content-between">
+                                <h6><a href="#">{{comment.author.username}}</a> reply:&nbsp;</h6>
+                                <h6>
+                                    <i class="pull-right">&nbsp;{{comment.date_created}}</i>
                                 </h6>
                             </div>
     
                             <small class="card-text">{{comment.comment}}</small>
     
-                            <!-- <div class="interact d-flex justify-content-end">
+                            <div class="interact d-flex justify-content-end">
                                 <small><i class="fa fa-thumbs-up">&nbsp;{{comment.likes.length}}</i></small>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <form>
-                <textarea class="form-control" rows="3" placeholder="Add a comment..."></textarea>
+            <form [formGroup]="commentForm" (ngSubmit)="submit()">
+                <textarea class="form-control" name="comment" id="comment_id" placeholder="Add a comment..." rows="3" formControlName="comment"></textarea>
                 <div class="d-flex mt-2">
                     <button class="btn btn-sm btn-primary ml-auto">Submit</button>
                 </div>

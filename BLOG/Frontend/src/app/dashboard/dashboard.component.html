@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <form [formGroup]="postForm" (ngSubmit)="submit()">
         <div class="form-group">
-            <textarea class="form-control" name="about" id="about_id" rows="3" formControlName="post"></textarea>
+            <textarea class="form-control" style="font-size: 12px;" name="post" id="post_id" placeholder="What's crunching your mind...?" rows="4" formControlName="post"></textarea>
         </div>
     
         <button type="submit" class="btn btn-sm btn-primary d-block mx-auto">Post</button>
@@ -27,7 +27,9 @@
 
             <div class="post-footer">
                 <div class="post-action ml-auto">
-                    <i class="fa fa-thumbs-up" (click)="like(post)">&nbsp;{{post.likes.length}}</i>
+                    <i *ngIf="post.author.id === author.id" class="fa fa-trash text-danger" (click)="remove(post)"></i>
+                    <!-- <a *ngIf="post.author.id === author.id" [routerLink]="['post', post.id]"><i class="fa fa-edit text-primary"></i></a> -->
+                    <i class="fa fa-thumbs-up ml-5" (click)="like(post)">&nbsp;{{post.likes.length}}</i>
                     <a [routerLink]="['post', post.id]"><i class="fa fa-comment">&nbsp;{{post.comments.length}}</i></a>
                 </div>
                 -
