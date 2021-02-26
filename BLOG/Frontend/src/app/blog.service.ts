@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+
 
 @Injectable({
 	providedIn: 'root'
@@ -40,6 +41,10 @@ export class BlogService {
 		return this.http.get(`${this.url}/user/${this.user.user_id}/`,  { headers: this.headers })
 	}
 
+	getProfileUser(user: any){
+		return this.http.get(`${this.url}/user/${user.id}/`,  { headers: this.headers })
+	}
+
 	// Getting all the posts of the users
 	getPosts() {
 		return this.http.get(`${this.url}/posts/`, { headers: this.headers })
@@ -62,7 +67,6 @@ export class BlogService {
 
 	// Remove post
 	removePost(post: any){
-		console.log(post);
 		return this.http.delete(`${this.url}/post/${post.id}/`, { headers: this.headers })
 	}
 
@@ -71,12 +75,13 @@ export class BlogService {
 		return this.http.post(`${this.url}/post/${post.id}/`, comment, { headers: this.headers })
 	}
 
-	// Get a comment
-	getComment(){}
-
 	// Update a comment
-	updateComment(){}
+	updateComment(comment: any){
+		return this.http.put(`${this.url}/comment/${comment.id}/`, comment, { headers: this.headers })
+	}
 
 	// Remove a comment
-	removeComment(){}
+	removeComment(comment: any){
+		return this.http.delete(`${this.url}/comment/${comment.id}/`, { headers: this.headers })
+	}
 }

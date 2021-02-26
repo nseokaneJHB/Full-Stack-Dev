@@ -9,14 +9,20 @@
     
                         <div class="content">
                             <div class="meta d-flex justify-content-between">
-                                <h6><a href="#">{{user.username}}</a> says:&nbsp;</h6>
-                                <h6>&nbsp;<i class="pull-right">{{post.date_created}}</i></h6>
+                                <ng-container *ngIf="post.author === user.id; else notAuthor">
+                                    <h6><a routerLink="/profile" class="recipient-name">{{userAuthor.username}}</a></h6>
+                                </ng-container>
+                                <ng-template #notAuthor>
+                                    <h6><a [routerLink]="['/user', post.author]" class="recipient-name">{{userAuthor.username}}</a></h6>
+                                </ng-template>
+
+                                <h6>&nbsp;<i class="pull-right">{{post.date_created | date}}</i></h6>
                             </div>
     
                             <small class="card-text">{{post.post}}</small>
     
                             <div class="interact d-flex justify-content-end">
-                                <small><i (click)="like(post)" class="fa fa-thumbs-up">&nbsp;{{likes.length}}</i></small>
+                                <small><i (click)="likePost(post)" class="fa fa-thumbs-up">&nbsp;{{likes.length}}</i></small>
                                 <small><i class="fa fa-comment">&nbsp;{{comments.length}}</i></small>
                             </div>
                         </div>
@@ -30,19 +36,20 @@
                 <div class="card" *ngFor="let comment of comments">
                     <div class="card-body">
                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid avatar rounded-circle" alt="">
-    
+                
                         <div class="content">
                             <div class="meta d-flex justify-content-between">
                                 <h6><a href="#">{{comment.author.username}}</a> reply:&nbsp;</h6>
                                 <h6>
-                                    <i class="pull-right">&nbsp;{{comment.date_created}}</i>
+                                    <i class="pull-right">&nbsp;{{comment.date_created | date}}</i>
                                 </h6>
                             </div>
-    
+                
                             <small class="card-text">{{comment.comment}}</small>
-    
+                
                             <div class="interact d-flex justify-content-end">
-                                <small><i class="fa fa-thumbs-up">&nbsp;{{comment.likes.length}}</i></small>
+                                <small><i (click)="likeComment(comment)" class="fa fa-thumbs-up">&nbsp;{{comment.likes.length}}</i></small>
+                                <small><i *ngIf="comment.author.id === user.id" (click)="removeComment(comment)" class="fa fa-trash text-danger"></i></small>
                             </div>
                         </div>
                     </div>

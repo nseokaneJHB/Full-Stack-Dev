@@ -1,0 +1,27 @@
+.container-fluid {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2rem .5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+}
+
+.container-fluid .card {
+  width: 100%;
+  max-width: 500px;
+  background-color: #d59696d8;
+}
+
+.container-fluid .card .card-header {
+  padding: 8px 0 0 0;
+}
+
+.container-fluid .card .card-body {
+  padding: 10px 15px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+/*# sourceMappingURL=user.component.css.map */

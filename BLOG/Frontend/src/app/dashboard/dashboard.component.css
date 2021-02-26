@@ -12,6 +12,10 @@
           box-shadow: none;
 }
 
+.dropdown-toggle::after {
+  display: none;
+}
+
 .posts {
   margin: 20px auto;
   overflow-x: auto;
@@ -90,5 +94,23 @@
 .recipient .recipient-name:hover {
   text-decoration: none;
   color: #22b9ff;
+}
+
+.recipient .dropdown-menu {
+  font-size: 12px;
+  padding: 0;
+}
+
+.recipient .dropdown-menu a, .recipient .dropdown-menu .fa-trash {
+  padding-left: 10px;
+  padding-top: 8px;
+  display: block;
+  height: 30px;
+}
+
+.recipient .dropdown-menu a:hover, .recipient .dropdown-menu .fa-trash:hover {
+  -webkit-box-shadow: 0 0 10px 0 black;
+          box-shadow: 0 0 10px 0 black;
+  background-color: #d59696ec;
 }
 /*# sourceMappingURL=dashboard.component.css.map */

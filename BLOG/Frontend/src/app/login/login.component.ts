@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 			this.loginForm.reset()
 			location.href = ''
 		}, err => {
-			console.log(err);
+			err;
 		})
 	}
 }

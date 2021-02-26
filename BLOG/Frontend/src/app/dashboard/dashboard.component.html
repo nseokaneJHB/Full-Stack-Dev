@@ -13,12 +13,25 @@
         <div class="mb-4" *ngFor="let post of posts">
             <div class="recipient">
                 <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Profile Picture" />
-                <a routerLink="profile" class="recipient-name">{{post.author.username}}</a>
+                <ng-container *ngIf="post.author.username === author.username; else notAuthor">
+                    <a routerLink="profile" class="recipient-name">{{post.author.username}}</a>
+                </ng-container>
+                <ng-template #notAuthor>
+                    <a [routerLink]="['user', post.author.id]" class="recipient-name">{{post.author.username}}</a>
+                </ng-template>
+                
+                <div *ngIf="post.author.id === author.id" class="dropstart ml-auto mr-3">
+                    <i class="dropdown-toggle fas fa-ellipsis-h" id="postDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                    <div class="dropdown-menu" aria-labelledby="postDropdown">
+                        <!-- <a [routerLink]="['post', post.id]"><i class="fa fa-edit text-primary">&nbsp;&nbsp;Update</i></a> -->
+                        <i class="fa fa-trash text-danger" (click)="remove(post)">&nbsp;&nbsp;Remove</i>
+                    </div>
+                </div>
             </div>
             
             <small class="post">
                 <ng-container *ngIf="post.post.length >= 50; else elseTemplate">
-                    {{post.post|slice: 0:50}}. <a routerLink="comments">Read more...</a>
+                    {{post.post|slice: 0:50}}. <a [routerLink]="['post', post.id]">Read more...</a>
                 </ng-container>
                 <ng-template #elseTemplate>
                     {{post.post}}
@@ -27,13 +40,11 @@
 
             <div class="post-footer">
                 <div class="post-action ml-auto">
-                    <i *ngIf="post.author.id === author.id" class="fa fa-trash text-danger" (click)="remove(post)"></i>
-                    <!-- <a *ngIf="post.author.id === author.id" [routerLink]="['post', post.id]"><i class="fa fa-edit text-primary"></i></a> -->
                     <i class="fa fa-thumbs-up ml-5" (click)="like(post)">&nbsp;{{post.likes.length}}</i>
                     <a [routerLink]="['post', post.id]"><i class="fa fa-comment">&nbsp;{{post.comments.length}}</i></a>
                 </div>
                 -
-                <small class="post-time">11:50 AM</small>
+                <small class="post-time">{{post.date_created | date}}</small>
             </div>            
         </div>
         <hr>

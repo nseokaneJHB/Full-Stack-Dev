@@ -59,6 +59,8 @@ class BlogModel(models.Model):
 	def __str__(self):
 		return str(f"Blog: {self.post}")
 
+	class Meta:
+    		ordering = ['-date_created', '-time_created']
 	
  
 class CommentModel(models.Model):
@@ -71,6 +73,9 @@ class CommentModel(models.Model):
 
 	def __str__(self):
 		return str(f"Comment by Name: {self.author}")
+
+	class Meta:
+    		ordering = ['-date_created', '-time_created']
 
 
 	

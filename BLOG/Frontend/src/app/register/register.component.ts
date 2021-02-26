@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
 	constructor(private blog: BlogService) { }
 
-	register: any = new FormGroup({
+	registerForm: any = new FormGroup({
 		username: new FormControl(''),
 		email: new FormControl(''),
 		password1: new FormControl(''),
@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
 	})
 
 	ngOnInit(): void {
-		this.register.value = {}
 	}
 
 	submit(){

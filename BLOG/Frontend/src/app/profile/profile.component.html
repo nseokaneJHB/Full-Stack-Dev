@@ -12,7 +12,7 @@
                                 <h5 class="user-name text-dark">{{user.username}}</h5>
                                 <h6 class="user-email text-dark">{{user.email}}</h6>
                             </div>
-                            <div *ngIf="profile.bio !== undefined " class="about">
+                            <div *ngIf="profile.bio !== undefined && profile.bio !== ''" class="about">
                                 <h5 class="mb-2 text-dark">About</h5>
                                 <p>{{profile.bio}}</p>
                             </div>

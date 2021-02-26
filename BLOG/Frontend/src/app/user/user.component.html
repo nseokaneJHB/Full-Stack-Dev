@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="container text-center">
+        <img class="igm-fluid mx-auto rounded-circle" style="max-width:200px;" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+    
+        <div class="card d-block mx-auto mt-4">
+            <div class="card-header">
+                <h4 class="card-title">{{user.username}}</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <small><strong>Full Name:</strong> {{user.first_name}} {{user.last_name}}</small>
+                    <br>
+                    <small><strong>Email:</strong> {{user.email}}</small>
+                    <br>
+                    <small *ngIf="user.phone"><strong>Phone Number:</strong> {{user.phone}}</small>
+                </p>
+                <p class="card-text text-small" *ngIf="user.bio">
+                    <strong>Bio:</strong> <br> <small>{{user.bio}}</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

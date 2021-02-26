@@ -53,26 +53,26 @@ def Profile(request):
     if request.method == 'GET':
         serializer = UserProfileSerializer(instance=user, many=False)
         return Response(serializer.data, status=201)
-    elif request.method == 'PUT':
-        serializer = UserProfileSerializer(instance=user)
-        serializer1 = UserSerializer(data=request.data)
-        serializer2 = ProfileSerializer(data=request.data)
-        if serializer1.is_valid():
-            if serializer2.is_valid():
-                serializer1.save()
-                serializer2.save()
+    # elif request.method == 'PUT':
+    #     serializer = UserProfileSerializer(instance=user)
+    #     serializer1 = UserSerializer(data=request.data)
+    #     serializer2 = ProfileSerializer(data=request.data)
+    #     if serializer1.is_valid():
+    #         if serializer2.is_valid():
+    #             serializer1.save()
+    #             serializer2.save()
 
-            return Response(serializer.data, status=201)
+    #         return Response(serializer.data, status=201)
 
-        else:
-            return Response(serializer1.errors, status=400)
+    #     else:
+    #         return Response(serializer1.errors, status=400)
 
     else:
         return Response(serializer.errors, status=400)
 # ================================================ My Profile ==================================================
 
 # ================================================ User ==================================================
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 @permission_classes((IsAuthenticated,))
 def TheUsers(request):
     users = User.objects.all()
@@ -80,15 +80,6 @@ def TheUsers(request):
     if request.method == 'GET':
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data, status=201)
-
-    # elif request.method == 'POST':
-    #     serializer = CreateUserSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=201)
-
-    #     else:
-    #         return Response(serializer.errors, status=400)
     
     else:
         return Response(serializer.error, status=400)
@@ -100,7 +91,7 @@ def TheUser(request, pk):
     user = User.objects.get(id=pk)
 
     if request.method == 'GET':
-        serializer = UserSerializer(instance=user, many=False)
+        serializer = UserProfileSerializer(instance=user, many=False)
         return Response(serializer.data, status=201)
 
     elif request.method == 'PUT': 

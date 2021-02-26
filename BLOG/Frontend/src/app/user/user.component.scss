@@ -1,0 +1,19 @@
+.container-fluid{
+    justify-content: center;
+    padding: 2rem .5rem;
+    display: flex;
+    height: 80vh;
+    .card{
+        width: 100%;
+        max-width: 500px;
+        background-color: #d59696d8;
+        .card-header{
+            padding: 8px 0 0 0;
+        }
+        .card-body{
+            padding: 10px 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    }
+}

@@ -10,6 +10,10 @@
     }
 }
 
+.dropdown-toggle::after {
+    display: none;
+}
+
 .posts{
     margin: 20px auto;
     overflow-x: auto;
@@ -66,6 +70,20 @@
         &:hover {
             text-decoration: none;
             color: #22b9ff;
+        }
+    }
+    .dropdown-menu{
+        font-size: 12px;
+        padding: 0;
+        a, .fa-trash{
+            padding-left: 10px;
+            padding-top: 8px;
+            display: block;
+            height: 30px;
+            &:hover{
+                box-shadow: 0 0 10px 0 black;
+                background-color: #d59696ec;
+            }
         }
     }
 }

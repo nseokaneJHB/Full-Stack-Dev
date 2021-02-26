@@ -50,7 +50,6 @@ export class ProfileComponent implements OnInit {
 	}
 
 	submit(){
-		console.log(this.profileForm.value);
-		// this.load()
+		console.log('Submiting changes...', this.profileForm.value);
 	}
 }

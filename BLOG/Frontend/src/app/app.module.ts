@@ -11,7 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PostComponent } from './post/post.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CommentComponent } from './comment/comment.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { CommentComponent } from './comment/comment.component';
     PostComponent,
     ProfileComponent,
     DashboardComponent,
-    CommentComponent
+    UserComponent
   ],
   imports: [
     BrowserModule,

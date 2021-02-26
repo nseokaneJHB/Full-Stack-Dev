@@ -5,17 +5,19 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PostComponent } from './post/post.component';
-import { CommentComponent } from './comment/comment.component';
+import { UserComponent } from './user/user.component';
+import { ProtectRoutesGuard } from './protect-routes.guard';
+import { ProtectLoginRegisterGuard } from './protect-login-register.guard'
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: '', component: DashboardComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'post/:id', component: PostComponent },
-  { path: 'comment/:id', component: CommentComponent }
+  { path: '', component: DashboardComponent, canActivate: [ProtectRoutesGuard]  },
+  { path: 'login', component: LoginComponent, canActivate: [ProtectLoginRegisterGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [ProtectLoginRegisterGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [ProtectRoutesGuard]  },
+  { path: 'post/:id', component: PostComponent, canActivate: [ProtectRoutesGuard]  },
+  { path: 'user/:id', component: UserComponent, canActivate: [ProtectRoutesGuard]  },
 ];
 
 @NgModule({
